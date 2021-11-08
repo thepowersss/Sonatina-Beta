@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import {MusicScore} from '../components/Music'
+import fetch from 'isomorphic-unfetch';
 
 class ScorePage extends Component {
 
@@ -51,6 +52,16 @@ c2ec B2dB|c2A2 A2BA|
             `}/>
         </div>
 	}
+}
+
+ScorePage.getInitialProps = async () => {
+  const res = await fetch('http://localhost:3000/api/scores');
+  const { data } = await res.json();
+
+  console.log("fetch this")
+  console.log(data)
+
+  return { notes: data }
 }
 
 export default ScorePage
