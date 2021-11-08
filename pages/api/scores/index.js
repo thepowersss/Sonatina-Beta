@@ -17,7 +17,9 @@ export default async (req, res) => {
         case 'POST':
             try {
                 const score = await Score.create(req.body)
-                console.log(score)
+                // console.log("post")
+                // console.log(req.body)
+                // console.log(score)
                 res.status(201).json({success: true, data: score})
             } catch(error) {
                 res.status(400).json({success: false})

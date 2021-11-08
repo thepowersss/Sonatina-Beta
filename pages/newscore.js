@@ -5,7 +5,7 @@ import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 
 const NewNote = () => {
-    const [form, setForm] = useState({ title: '', description: '', music: ''});
+    const [form, setForm] = useState({ title: '', description: '', composer: '', music: ''});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
@@ -32,7 +32,6 @@ const NewNote = () => {
                 body: JSON.stringify(form)
             })
             console.log(JSON.stringify(form))
-            console.log(JSON.stringify(res.body))
             router.push("/");
         } catch (error) {
             console.log(error);
@@ -62,6 +61,9 @@ const NewNote = () => {
         if (!form.description) {
             err.description = 'Description is required';
         }
+        if (!form.composer) {
+            err.composer = 'Composer is required';
+        }
 
         return err;
     }
@@ -88,6 +90,14 @@ const NewNote = () => {
                                 placeholder='Description'
                                 name='description'
                                 error={errors.description ? { content: 'Please enter a description', pointing: 'below' } : null}
+                                onChange={handleChange}
+                            />
+                            <Form.TextArea
+                                fluid
+                                label='Composer'
+                                placeholder='Composer'
+                                name='composer'
+                                error={errors.composer ? { content: 'Please enter a composer', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
                             <Form.TextArea
