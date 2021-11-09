@@ -1,5 +1,6 @@
 import {Component} from 'react'
-import {MusicScore, Scores} from '../components/Music'
+import {MusicScore} from '../components/Music'
+import {Scores} from '../components/Scores'
 import fetch from 'isomorphic-unfetch';
 import {Button} from 'antd'
 
@@ -59,7 +60,5 @@ c2ec B2dB|c2A2 A2BA|
         </div>
 	}
 }
-
-
 
 export default ScorePage

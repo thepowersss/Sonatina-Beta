@@ -1,22 +1,22 @@
 import Link from 'next/link';
+import React from 'react'
 import fetch from 'isomorphic-unfetch';
-import MusicScore from '/Music'
+import MusicScore from '../Music'
 
-function Scores({ notes }) {
-    getInitialProps() = async () => {
-        const res = await fetch('http://localhost:3000/api/scores');
-        const { data } = await res.json();
+// function Scores(props) {
+//     return <div> reached </div>
+// }
 
-        console.log("fetch this")
-        console.log(data)
 
-        return { notes: data }
-    }
+
+const Scores = ({ scores }) => {
+    console.log({scores})
+    console.log("reached")
     return (
         <div className="notes-container">
             <h1>Scores</h1>
             <div className="grid wrapper">
-                {notes.map(note => {
+                {scores.map(note => {
                     return (
                         <div key={note._id}>
                             {note._id}
@@ -33,4 +33,13 @@ function Scores({ notes }) {
     )
 }
 
+Scores.getInitialProps = async () => {
+    const res = await fetch('http://localhost:3000/api/scores');
+    const { data } = await res.json();
+
+    console.log("fetch this")
+    console.log(data)
+
+    return { scores: data }
+}
 export default Scores

@@ -77,7 +77,7 @@ const NewNote = () => {
                         ? <Loader active inline='centered' />
                         : <Form onSubmit={handleSubmit}>
                             <Form.Input
-                                fluid
+
                                 error={errors.title ? { content: 'Please enter a title', pointing: 'below' } : null}
                                 label='Title'
                                 placeholder='Title'
@@ -85,7 +85,7 @@ const NewNote = () => {
                                 onChange={handleChange}
                             />
                             <Form.TextArea
-                                fluid
+
                                 label='Description'
                                 placeholder='Description'
                                 name='description'
@@ -93,7 +93,7 @@ const NewNote = () => {
                                 onChange={handleChange}
                             />
                             <Form.TextArea
-                                fluid
+
                                 label='Composer'
                                 placeholder='Composer'
                                 name='composer'
@@ -101,7 +101,7 @@ const NewNote = () => {
                                 onChange={handleChange}
                             />
                             <Form.TextArea
-                                fluid
+                                
                                 label='ABCMusic'
                                 placeholder='ABCMusic'
                                 name='music'
