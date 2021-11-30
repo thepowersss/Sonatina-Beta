@@ -29,8 +29,8 @@ const Mobile = ({score}) => {
             const res = await fetch('http://localhost:3000/api/scores/${router.query.id}', {
                 method: 'PUT',
                 headers: {
-                    Accept: contentType,
-                    'Content-Type': contentType,
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(form),
             });
