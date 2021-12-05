@@ -23,9 +23,9 @@ export default withRouter(class ScorePage extends Component {
         console.log(data)
         console.log("fetch this")
         console.log({scores:data})
-        var { query: { id } } = ctx;
-        console.log("fetch query")
-        console.log({ query: { id } })
+        // var { query: { id } } = ctx;
+        // console.log("fetch query")
+        // console.log({ query: { id } })
         return { scores: data }
     }
 

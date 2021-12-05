@@ -29,11 +29,11 @@ const ScoreSchema = new mongoose.Schema({
     }
 })
 
-ScoreSchema.add({composer: {
-    type: String,
-    required: [true, 'Please add a composer'],
-    maxlength: [50, 'Composer cannot be more than 50 characters']
-}})
+// ScoreSchema.add({composer: {
+//     type: String,
+//     required: [true, 'Please add a composer'],
+//     maxlength: [50, 'Composer cannot be more than 50 characters']
+// }})
 
 //module.exports = mongoose.model('Score', ScoreSchema)
 module.exports = mongoose.models.Score || mongoose.model('Score', ScoreSchema)
