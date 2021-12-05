@@ -7,6 +7,7 @@ export default async (req, res) => {
     const {method} = req
     switch(method) {
         case 'GET':
+            console.log("attempt GET")
             try {
                 const scores = await Score.find({})
                 res.status(200).json({success: true, data: scores})
@@ -15,11 +16,9 @@ export default async (req, res) => {
             }
             break;
         case 'POST':
+            console.log("attempt POST")
             try {
                 const score = await Score.create(req.body)
-                // console.log("post")
-                // console.log(req.body)
-                // console.log(score)
                 res.status(201).json({success: true, data: score})
             } catch(error) {
                 res.status(400).json({success: false})

@@ -7,6 +7,15 @@ import { withRouter } from 'next/router'
 
 
 export default withRouter(class ScorePage extends Component {
+    // static async getInitialProps({ query: { id } }) {
+    //     const res = await fetch('http://localhost:3000/api/scores/${id}');
+    //     const { data } = await res.json();
+    //
+    //     console.log(data)
+    //     console.log("fetch this")
+    //     console.log({scores:data})
+    //     return { scores: data }
+    // }
     static async getInitialProps(ctx) {
         const res = await fetch('http://localhost:3000/api/scores');
         const { data } = await res.json();
@@ -14,6 +23,9 @@ export default withRouter(class ScorePage extends Component {
         console.log(data)
         console.log("fetch this")
         console.log({scores:data})
+        var { query: { id } } = ctx;
+        console.log("fetch query")
+        console.log({ query: { id } })
         return { scores: data }
     }
 
@@ -53,7 +65,7 @@ export default withRouter(class ScorePage extends Component {
             });
             // set state
             console.log("put fetch updateMusic")
-
+            console.log(this.props.router)
             // reload the page
             //this.props.router.push("/mobiletest");
         } catch (error) {

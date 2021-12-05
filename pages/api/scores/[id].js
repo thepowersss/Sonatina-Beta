@@ -9,22 +9,29 @@ export default async (req, res) => {
         method
     } = req;
 
+    //console.log(req.method)
+    //console.log(req.query)
+
     switch(method) {
         case 'GET':
             try {
-                const score = await Score.findByID(id)
+                //console.log(id)
+                console.log("attempt GET")
+                const score = await Score.findById(id)
 
                 if (!score) { // if score does not exist
                     return res.status(400).json({success: false})
                 }
                 res.status(200).json({success: true, data: score})
             } catch(error) {
+                console.log(error)
                 res.status(400).json({success: false})
             }
             break;
         case 'PUT':
             try {
-                const score = await Score.findByIDAndUpdate(id, req.body, {
+                console.log("attempt PUT")
+                const score = await Score.findByIdAndUpdate(id, req.body, {
                     new: true,
                     runValidators: true
                 })
