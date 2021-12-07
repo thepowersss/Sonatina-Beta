@@ -7,7 +7,8 @@ class MusicScore extends Component {
         super(props);
     }
     render() {
-        return <div><h1>{this.props.title}</h1>
+        return <div>
+            <h1>{this.props.title}</h1>
             <Abc2Svg
                 abcNotation={this.props.abc}
                 showErrors

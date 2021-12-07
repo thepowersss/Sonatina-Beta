@@ -11,7 +11,7 @@ export default async (req, res) => {
 
     //console.log(req.method)
     //console.log(req.query)
-
+    console.log("scores/[id] called")
     switch(method) {
         case 'GET':
             try {
@@ -31,10 +31,11 @@ export default async (req, res) => {
         case 'PUT':
             try {
                 console.log("attempt PUT")
-                const score = await Score.findByIdAndUpdate(id, req.body, {
+                const score = await Score.findByIdAndUpdate(id, {music: req.body}, {
                     new: true,
-                    runValidators: true
+                    runValidators: false
                 })
+                console.log(score)
 
                 if (!score) { // if score does not exist
                     return res.status(400).json({success: false})
