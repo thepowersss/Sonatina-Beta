@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {MusicScore} from '../../components/Music'
 import {Button} from 'antd'
+import { server } from '../../config';
 
 const Score = ({ score }) => {
     const router = useRouter();
@@ -39,7 +40,7 @@ const Score = ({ score }) => {
         // 1. GET current score
         try {
             console.log("attempt GET curr score")
-            const res = await fetch(`http://localhost:3000/api/scores/${router.query.id}`, {
+            const res = await fetch(`${server}/api/scores/${router.query.id}`, {
                 method: 'GET',
                 headers: {
                     "Accept": "application/json",
@@ -62,7 +63,7 @@ const Score = ({ score }) => {
             var newScore = testScore.data.music + "C"
             testScore.data.music = newScore;
 
-            const res = await fetch(`http://localhost:3000/api/scores/${router.query.id}`, {
+            const res = await fetch(`${server}/api/scores/${router.query.id}`, {
                 method: 'PUT',
                 headers: {
                     "Accept": "application/json",
@@ -98,7 +99,7 @@ const Score = ({ score }) => {
 }
 
 Score.getInitialProps = async ({ query: { id } }) => {
-    const res = await fetch(`http://localhost:3000/api/scores/${id}`);
+    const res = await fetch(`${server}/api/scores/${id}`);
     const { data } = await res.json();
 
     return { score: data }

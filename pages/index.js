@@ -3,18 +3,20 @@ import {MusicScore} from '../components/Music'
 import {Scores} from '../components/Scores'
 import fetch from 'isomorphic-unfetch';
 import {Button} from 'antd'
-
+import Link from 'next/link';
+import { server } from '../config';
 
 class ScorePage extends Component {
 
     static async getInitialProps(ctx) {
-        const res = await fetch('http://localhost:3000/api/scores');
+        console.log(`${server}/api/scores`)
+        const res = await fetch(`${server}/api/scores`);
         const { data } = await res.json();
 
 
         console.log(data)
         console.log("fetch this")
-        console.log({scores:data})
+        console.log({ scores:data })
         return { scores: data }
     }
 

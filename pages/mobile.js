@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Component, useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { Form, Loader } from 'semantic-ui-react';
+import { server } from '../config';
 
 const Mobile = ({score}) => {
     const [form, setForm] = useState({ title: score.title, description: score.description });
@@ -26,7 +27,7 @@ const Mobile = ({score}) => {
 
     const updateMusic = async () => {
         try {
-            const res = await fetch('http://localhost:3000/api/scores/${router.query.id}', {
+            const res = await fetch(`${server}/api/scores${router.query.id}`, {
                 method: 'PUT',
                 headers: {
                     "Accept": "application/json",
@@ -124,7 +125,7 @@ const Mobile = ({score}) => {
 Mobile.getInitialProps = async ({ query: { id } }) => {
     console.log("mobile initial props")
 
-    const res = await fetch('http://localhost:3000/api/scores/${id}');
+    const res = await fetch(`${server}/api/scores/${id}`);
     console.log(await res.json())
 
     const { data } = await res.json();

@@ -4,20 +4,11 @@ import {Scores} from '../components/Scores'
 import fetch from 'isomorphic-unfetch';
 import {Button} from 'antd'
 import { withRouter } from 'next/router'
-
+import { server } from '../config';
 
 export default withRouter(class ScorePage extends Component {
-    // static async getInitialProps({ query: { id } }) {
-    //     const res = await fetch('http://localhost:3000/api/scores/${id}');
-    //     const { data } = await res.json();
-    //
-    //     console.log(data)
-    //     console.log("fetch this")
-    //     console.log({scores:data})
-    //     return { scores: data }
-    // }
     static async getInitialProps(ctx) {
-        const res = await fetch('http://localhost:3000/api/scores');
+        const res = await fetch(`${server}/api/scores`);
         const { data } = await res.json();
 
         console.log(data)
