@@ -22,7 +22,6 @@ class ScorePage extends Component {
 
 	render() {
 		return <div>
-            <div>Main score website</div>
 
             <Scores
                 scorekey={this.props.scores}

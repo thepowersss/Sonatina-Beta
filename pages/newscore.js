@@ -23,7 +23,7 @@ const NewNote = () => {
 
     const createNote = async () => {
         try {
-            const res = await fetch('http://localhost:3000/api/scores', {
+            const res = await fetch(`${server}/api/scores`, {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",
@@ -101,7 +101,7 @@ const NewNote = () => {
                                 onChange={handleChange}
                             />
                             <Form.TextArea
-                                
+
                                 label='ABCMusic'
                                 placeholder='ABCMusic'
                                 name='music'

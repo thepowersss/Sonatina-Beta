@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import {MusicScore} from '../../components/Music'
 import {Button} from 'antd'
 import { server } from '../../config';
+import Link from 'next/link';
 
 const Score = ({ score }) => {
     const router = useRouter();
@@ -93,7 +94,10 @@ const Score = ({ score }) => {
             <MusicScore
                 abc={score.music}
             />
-            <Button type='submit' onClick={updateScore}>UpdateMusic</Button>
+
+        <Button>
+            <Link href={`${server}/${router.query.id}/mobile`}>Mobile Input</Link>
+        </Button>
         </div>
     )
 }
