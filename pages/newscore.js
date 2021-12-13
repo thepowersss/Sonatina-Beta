@@ -3,9 +3,28 @@ import { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
+import { server } from '../config';
 
 const NewNote = () => {
-    const [form, setForm] = useState({ title: '', description: '', composer: '', music: ''});
+    const [form, setForm] = useState({
+        title: '',
+        description: '',
+        composer: '',
+        header: `%abc-2.2
+%%pagewidth 14cm
+%%bgcolor white
+%%topspace 0
+%%leftmargin 0.8cm
+%%rightmargin 0.8cm
+%%fullsvg 1
+
+X:1
+L:1/8
+M:4/4
+T:Ode to Joy
+K:C
+`,
+        music: ''});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const router = useRouter();
@@ -64,6 +83,12 @@ const NewNote = () => {
         if (!form.composer) {
             err.composer = 'Composer is required';
         }
+        if (!form.header) {
+            err.header = 'Header is required';
+        }
+        if (!form.music) {
+            err.music = 'Music is required';
+        }
 
         return err;
     }
@@ -102,10 +127,18 @@ const NewNote = () => {
                             />
                             <Form.TextArea
 
+                                label='ABCMusicHeader'
+                                placeholder='ABCMusicHeader'
+                                name='header'
+                                error={errors.header ? { content: 'Please enter abc header', pointing: 'below' } : null}
+                                onChange={handleChange}
+                            />
+                            <Form.TextArea
+
                                 label='ABCMusic'
                                 placeholder='ABCMusic'
                                 name='music'
-                                error={errors.music ? { content: 'Please enter music', pointing: 'below' } : null}
+                                error={errors.music ? { content: 'Please enter abc music', pointing: 'below' } : null}
                                 onChange={handleChange}
                             />
                             <Button type='submit'>Create</Button>

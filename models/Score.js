@@ -23,6 +23,10 @@ const ScoreSchema = new mongoose.Schema({
         required: [true, 'Please add a composer'],
         maxlength: [50, 'Composer cannot be more than 50 characters']
     },
+    header: {
+        type: String,
+        required: [true, 'Please add header'],
+    },
     music: {
         type: String,
         required: [true, 'Please add music'],

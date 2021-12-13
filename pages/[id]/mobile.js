@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import {MusicScore} from '../../components/Music'
+import {MusicScore} from '../../components'
 import {Button} from 'antd'
+import 'antd/dist/antd.css'
 import { server } from '../../config';
 
 const Score = ({ score }) => {
@@ -147,7 +148,11 @@ const Score = ({ score }) => {
             console.log(error)
         }
 
-        // 2. check if there's a barline in last 4 chars
+        // 2a. check if there are notes to delete
+
+
+
+        // 2b. check if there's a barline in last 4 chars
         console.log("check is here:")
         let viewSlice = newScore.data.music.slice(-5)
         console.log(viewSlice)
@@ -237,6 +242,23 @@ const Score = ({ score }) => {
     return (
         <div>
             <div className="input-container">mobile screen</div>
+            <MusicScore
+                abc={`%abc-2.2
+%%pagewidth 14cm
+%%bgcolor white
+%%topspace 0
+%%composerspace 0
+%%leftmargin 0.8cm
+%%rightmargin 0.8cm
+%%fullsvg 2
+
+X:1
+L:1/8
+K:C
+${newNote}
+`}
+            />
+            <div>{newNote}</div>
             <div className="pitch-container">
                 <Button onClick={function(){setPitch("a")}}>a</Button>
                 <Button onClick={function(){setPitch("g")}}>g</Button>
@@ -266,7 +288,6 @@ const Score = ({ score }) => {
                 <Button type='dashed' onClick={function(){setDuration("3/8 ")}}>Dotted Thirty-second</Button>
                 <Button type='dashed' onClick={function(){setDuration("/4  ")}}>Thirty-second</Button>
             </div>
-            <div>{newNote}</div>
             <Button type='dashed' onClick={insertNote}>Insert</Button>
             <Button type='dashed' onClick={deleteNote}>Delete</Button>
             <Button type='dashed' onClick={insertBarline}>Insert Barline</Button>

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import React from 'react'
 import fetch from 'isomorphic-unfetch';
-import {MusicScore} from '../Music'
+import {MusicScore} from '../components'
+import { useState } from 'react';
 
 function Scores(props) {
     let scores = props.scorekey
@@ -21,7 +22,7 @@ function Scores(props) {
 
                                 <MusicScore
                                     title={score.title}
-                                    abc={score.music}
+                                    abc={score.header+"\n"+score.music}
                                 />
                             </div>
                         </Link>

@@ -1,6 +1,5 @@
 import {Component} from 'react'
-import {MusicScore} from '../components/Music'
-import {Scores} from '../components/Scores'
+import {Scores} from '../components'
 import fetch from 'isomorphic-unfetch';
 import {Button} from 'antd'
 import Link from 'next/link';

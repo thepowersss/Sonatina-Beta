@@ -1,7 +1,11 @@
-import MusicScore from './Music'
+import MusicScore from './MusicScore'
 import Scores from './Scores'
+import Layout from './Layout'
+import Navbar from './Navbar'
 
 export {
-    MusicScore,
-    Scores
+	MusicScore,
+    Scores,
+    Layout,
+    Navbar
 }
