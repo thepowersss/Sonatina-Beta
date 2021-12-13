@@ -149,13 +149,48 @@ const Score = ({ score }) => {
 
         // 2. check if there's a barline in last 4 chars
         console.log("check is here:")
-        console.log(newScore.data.music.slice(-5))
+        let viewSlice = newScore.data.music.slice(-5)
+        console.log(viewSlice)
 
-        if ((newScore.data.music.slice(-5).includes("|"))) {
+        if ((viewSlice.includes("|"))) {
             console.log ("contains barline")
-            // TODO
             // delete up to the right of the barline
+            for (let i = 4; i > -1; i--) {
+                console.log(i)
+                if (viewSlice.charAt(i)=='|') {
+                    // delete up to the right of the barline
+                    console.log("detected at " + i)
+                    console.log(newScore.data.music.slice(0, -i))
+                    newScore.data.music = newScore.data.music.slice(0, -i)
+
+                    // PUT newScore
+                    try {
+                        console.log("attempt PUT curr score")
+
+                        const res = await fetch(`${server}/api/scores/${router.query.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                "Accept": "application/json",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(newScore.data.music),
+                            //body: JSON.stringify(newScore),
+                        });
+
+                        console.log("finish PUT curr score")
+                        console.log(newScore.data.music)
+                        // console.log(res)
+
+                        //console.log(router)
+                        //router.reload(); // reload the page
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    break
+                }
+            }
             // if barline is the last character, then delete just the barline
+
         } else {
             console.log("no barline")
             console.log(newScore.data.music.slice(0, -5))
