@@ -1,4 +1,2 @@
 .next
-.env.local
 node_modules
-next.config.js
