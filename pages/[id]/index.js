@@ -5,14 +5,18 @@ import {MusicScore} from '../../components'
 import {Button} from 'antd'
 import { server } from '../../config';
 import Link from 'next/link';
+import 'antd/dist/antd.css'
 
 const Score = ({ score }) => {
     const router = useRouter();
-    const [testScore, setForm] = useState();
+
+    setTimeout(() => {console.log("reloading page...")}, 5000);
+    setTimeout(() => {location.reload()}, 5000);
 
     return (
         <div className="score-container">
-            <meta http-equiv="refresh" content="5" />
+           <p>This page will refresh every 5 seconds.</p>
+
             <h1>{score.title}</h1>
             <h1>{score.composer}</h1>
             <p>{score.description}</p>
@@ -24,6 +28,7 @@ const Score = ({ score }) => {
         <Button>
             <Link href={`${server}/${router.query.id}/mobile`}>Mobile Input</Link>
         </Button>
+        <Button onClick={() => location.reload()}>reload page</Button>
         </div>
     )
 }

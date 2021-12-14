@@ -1,3 +1,5 @@
+
+
 h1 {
     text-align: center;
 }
@@ -19,6 +21,10 @@ h1 {
     color: #fff;
     display: flex;
     justify-content: space-between;
+}
+
+.create {
+    margin: 10px;
 }
 
 .navbar .create {
@@ -60,17 +66,29 @@ h1 {
 }
 
 .pitch-container {
-
+    display: grid;
     flex-direction: column;
     text-align: center;
     margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .duration-container {
-    
+    display: grid;
     flex-direction: column;
     text-align: center;
     margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.buttons {
+    margin: 10px;
 }
 
 .grid {

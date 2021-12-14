@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import { Button, Form, Loader } from 'semantic-ui-react';
 import { useRouter } from 'next/router';
 import { server } from '../config';
+import 'antd/dist/antd.css'
 
 const NewNote = () => {
     const [form, setForm] = useState({

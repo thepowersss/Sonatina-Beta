@@ -10,7 +10,7 @@ function Scores(props) {
     console.log(scores)
 
     return (
-        <div className="notes-container">
+        <div className="score-container">
             <h1>Scores</h1>
             <div className="grid wrapper">
                 {scores.map(score => {

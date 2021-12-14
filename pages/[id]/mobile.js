@@ -5,6 +5,7 @@ import {MusicScore} from '../../components'
 import {Button} from 'antd'
 import 'antd/dist/antd.css'
 import { server } from '../../config';
+import Link from 'next/link';
 
 const Score = ({ score }) => {
     const router = useRouter();
@@ -240,10 +241,12 @@ const Score = ({ score }) => {
     }
 
     return (
-        <div>
-            <div className="input-container">mobile screen</div>
-            <MusicScore
-                abc={`%abc-2.2
+        <div className="wrapper">
+            <div className="centered">Mobile Input</div>
+            <div className="input-container">
+                <div className="centered">
+                <MusicScore
+                    abc={`%abc-2.2
 %%pagewidth 14cm
 %%bgcolor white
 %%topspace 0
@@ -255,43 +258,48 @@ const Score = ({ score }) => {
 X:1
 L:1/8
 K:C
-${newNote}
-`}
-            />
-            <div>{newNote}</div>
-            <div className="pitch-container">
-                <Button onClick={function(){setPitch("a")}}>a</Button>
-                <Button onClick={function(){setPitch("g")}}>g</Button>
-                <Button onClick={function(){setPitch("f")}}>f</Button>
-                <Button onClick={function(){setPitch("e")}}>e</Button>
-                <Button onClick={function(){setPitch("d")}}>d</Button>
-                <Button onClick={function(){setPitch("c")}}>c</Button>
-                <Button onClick={function(){setPitch("B")}}>B</Button>
-                <Button onClick={function(){setPitch("A")}}>A</Button>
-                <Button onClick={function(){setPitch("G")}}>G</Button>
-                <Button onClick={function(){setPitch("F")}}>F</Button>
-                <Button onClick={function(){setPitch("E")}}>E</Button>
-                <Button onClick={function(){setPitch("D")}}>D</Button>
-                <Button onClick={function(){setPitch("C")}}>C</Button>
+${newNote}`}
+                />
+                </div>
+                <div>{newNote}</div>
+                <div className="pitch-container">Pitch
+                    <Button onClick={function(){setPitch("a")}}>A5</Button>
+                    <Button onClick={function(){setPitch("g")}}>G5</Button>
+                    <Button onClick={function(){setPitch("f")}}>F5</Button>
+                    <Button onClick={function(){setPitch("e")}}>E5</Button>
+                    <Button onClick={function(){setPitch("d")}}>D5</Button>
+                    <Button onClick={function(){setPitch("c")}}>C5</Button>
+                    <Button onClick={function(){setPitch("B")}}>B4</Button>
+                    <Button onClick={function(){setPitch("A")}}>A4</Button>
+                    <Button onClick={function(){setPitch("G")}}>G4</Button>
+                    <Button onClick={function(){setPitch("F")}}>F4</Button>
+                    <Button onClick={function(){setPitch("E")}}>E4</Button>
+                    <Button onClick={function(){setPitch("D")}}>D4</Button>
+                    <Button onClick={function(){setPitch("C")}}>C4</Button>
+                </div>
+                <div className="duration-container">Duration
+                    <Button type='dashed' onClick={function(){setDuration("12  ")}}>Dotted Whole</Button>
+                    <Button type='dashed' onClick={function(){setDuration("8   ")}}>Whole</Button>
+                    <Button type='dashed' onClick={function(){setDuration("6   ")}}>Dotted Half</Button>
+                    <Button type='dashed' onClick={function(){setDuration("4   ")}}>Half</Button>
+                    <Button type='dashed' onClick={function(){setDuration("3   ")}}>Dotted Quarter</Button>
+                    <Button type='dashed' onClick={function(){setDuration("2   ")}}>Quarter</Button>
+                    <Button type='dashed' onClick={function(){setDuration("3/2 ")}}>Dotted Eighth</Button>
+                    <Button type='dashed' onClick={function(){setDuration("1   ")}}>Eighth</Button>
+                    <Button type='dashed' onClick={function(){setDuration("3/4 ")}}>Dotted Sixteenth</Button>
+                    <Button type='dashed' onClick={function(){setDuration("/2  ")}}>Sixteenth</Button>
+                    <Button type='dashed' onClick={function(){setDuration("3/8 ")}}>Dotted Thirty-second</Button>
+                    <Button type='dashed' onClick={function(){setDuration("/4  ")}}>Thirty-second</Button>
+                </div>
             </div>
-            <div className="duration-container">
-                <Button type='dashed' onClick={function(){setDuration("12  ")}}>Dotted Whole</Button>
-                <Button type='dashed' onClick={function(){setDuration("8   ")}}>Whole</Button>
-                <Button type='dashed' onClick={function(){setDuration("6   ")}}>Dotted Half</Button>
-                <Button type='dashed' onClick={function(){setDuration("4   ")}}>Half</Button>
-                <Button type='dashed' onClick={function(){setDuration("3   ")}}>Dotted Quarter</Button>
-                <Button type='dashed' onClick={function(){setDuration("2   ")}}>Quarter</Button>
-                <Button type='dashed' onClick={function(){setDuration("3/2 ")}}>Dotted Eighth</Button>
-                <Button type='dashed' onClick={function(){setDuration("1   ")}}>Eighth</Button>
-                <Button type='dashed' onClick={function(){setDuration("3/4 ")}}>Dotted Sixteenth</Button>
-                <Button type='dashed' onClick={function(){setDuration("/2  ")}}>Sixteenth</Button>
-                <Button type='dashed' onClick={function(){setDuration("3/8 ")}}>Dotted Thirty-second</Button>
-                <Button type='dashed' onClick={function(){setDuration("/4  ")}}>Thirty-second</Button>
+            <div className="buttons">
+                <Button type='primary' onClick={insertNote}>Insert</Button>
+                <Button type='primary' onClick={deleteNote}>Delete</Button>
+                <Button type='primary' onClick={insertBarline}>Insert Barline</Button>
+                <Button>
+                    <Link href={`${server}/${router.query.id}`}>Go to Score</Link>
+                </Button>
             </div>
-            <Button type='dashed' onClick={insertNote}>Insert</Button>
-            <Button type='dashed' onClick={deleteNote}>Delete</Button>
-            <Button type='dashed' onClick={insertBarline}>Insert Barline</Button>
-
         </div>
     )
 }

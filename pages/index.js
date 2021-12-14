@@ -4,6 +4,7 @@ import fetch from 'isomorphic-unfetch';
 import {Button} from 'antd'
 import Link from 'next/link';
 import { server } from '../config';
+import 'antd/dist/antd.css'
 
 class ScorePage extends Component {
 
