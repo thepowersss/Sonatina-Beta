@@ -11,7 +11,7 @@ const Score = ({ score }) => {
     const router = useRouter();
 
     setTimeout(() => {console.log("reloading page...")}, 5000);
-    setTimeout(() => {document.location.reload()}, 5000);
+    //setTimeout(() => {document.location.reload()}, 5000);
 
     return (
         <div className="score-container">
@@ -28,7 +28,6 @@ const Score = ({ score }) => {
         <Button>
             <Link href={`${server}/${router.query.id}/mobile`}>Mobile Input</Link>
         </Button>
-        <Button onClick={() => document.location.reload()}>reload page</Button>
         </div>
     )
 }
