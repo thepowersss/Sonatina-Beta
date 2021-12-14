@@ -73,9 +73,61 @@ const Score = ({ score }) => {
         }
     }
 
+    const insertRest = async(e) => {
+        e.preventDefault();
+        console.log("insertRest button pressed")
+        // setNewNote(newPitch+newDuration)
+        console.log(newDuration)
+
+        // 1. GET current score
+        try {
+            console.log("attempt GET curr score")
+            const res = await fetch(`${server}/api/scores/${router.query.id}`, {
+                method: 'GET',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+            });
+            // set state
+            console.log("finish GET curr score")
+            const { data } = await res.json();
+            newScore = {data}
+            //console.log(newScore)
+            //console.log(newScore.data.music)
+        } catch (error) {
+            console.log(error)
+        }
+
+        // 2. PUT new score updated
+        try {
+            console.log("attempt PUT curr score")
+            newScore.data.music = newScore.data.music + "z" + newDuration
+
+            const res = await fetch(`${server}/api/scores/${router.query.id}`, {
+                method: 'PUT',
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newScore.data.music),
+                //body: JSON.stringify(newScore),
+            });
+
+            console.log("finish PUT curr score")
+            console.log(newScore.data.music)
+            // console.log(res)
+
+            //console.log(router)
+            //router.reload(); // reload the page
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const insertNote = async (e) => {
         e.preventDefault();
-        console.log("updateScore button pressed")
+        console.log("insertNote button pressed")
         // setNewNote(newPitch+newDuration)
         console.log(newNote)
 
@@ -293,9 +345,11 @@ ${newNote}`}
                 </div>
             </div>
             <div className="buttons">
-                <Button type='primary' onClick={insertNote}>Insert</Button>
-                <Button type='primary' onClick={deleteNote}>Delete</Button>
+                <Button type='primary' onClick={insertNote}>Insert Note</Button>
+                <Button type='primary' onClick={insertRest}>Insert Rest</Button>
                 <Button type='primary' onClick={insertBarline}>Insert Barline</Button>
+                <Button type='primary' onClick={deleteNote}>Delete</Button>
+
                 <Button>
                     <Link href={`${server}/${router.query.id}`}>Go to Score</Link>
                 </Button>
